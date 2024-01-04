@@ -1,105 +1,147 @@
-let ball1 = document.getElementById("ball1");
-let ball2 = document.getElementById("ball2");
-let ball3 = document.getElementById("ball3");
-let size = 100;
-let size2 = 70;
-let size3 = 120;
 
+let root = document.getElementById("root");
+let body = document.getElementById("body");
 
-ball1.addEventListener('mouseover' , function() {
-   const intervalId = setInterval(function() {
-      size += 1;
-      ball1.style.width = [size] + "px";
-      ball1.style.height = [size] + "px";
-      
-      ball1.addEventListener('mouseleave' , function() {
-         clearInterval(intervalId);
-      });
-
-      if (size >= 500) {
-         clearInterval(intervalId);
-      }
-   }, 10);
-   }
-);
-
-ball2.addEventListener('mouseover' , function() {
-   const intervalId2 = setInterval(function() {
-      size2 += 1;
-      ball2.style.width = [size2] + "px";
-      ball2.style.height = [size2] + "px";
-      
-      ball2.addEventListener('mouseleave' , function() {
-         clearInterval(intervalId2);
-      });
-
-      if (size >= 500) {
-         clearInterval(intervalId2);
-      }
-   }, 10);
-   }
-);
-
-ball3.addEventListener('mouseover' , function() {
-   const intervalId3 = setInterval(function() {
-      size3 += 1;
-      ball3.style.width = [size3] + "px";
-      ball3.style.height = [size3] + "px";
-      
-      ball3.addEventListener('mouseleave' , function() {
-         clearInterval(intervalId3);
-      });
-
-      if (size >= 500) {
-         clearInterval(intervalId3);
-      }
-   }, 10);
-   }
-);
-
-
-
-
-ball1.addEventListener('click' , function() {
-   function getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-   }
+root.addEventListener('click' , function() {
    
-   let getColor = getRandomColor();
-   ball1.style.backgroundColor = getColor;
-});
+   let size = randomSize();
 
-ball2.addEventListener('click' , function() {
    function getRandomColor2() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
+      let letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
           color += letters[Math.floor(Math.random() * 16)];
       }
       return color;
    }
-   
-   let getColor2 = getRandomColor2();
-   ball2.style.backgroundColor = getColor2;
-});
 
-ball3.addEventListener('click' , function() {
-   function getRandomColor3() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
+   let randomBackground = getRandomColor2();
+
+   let ballRandom = document.createElement("div");
+   ballRandom.className = "ballRandom";
+   ballRandom.style.backgroundColor = randomBackground;
+   document.body.prepend(ballRandom);
+   
+
+
+
+   ballRandom.addEventListener('mouseover' , function() {
+      const intervalId = setInterval(function() {
+         size += 1;
+         ballRandom.style.width = size + "px";
+         ballRandom.style.height = size + "px";
+         
+         ballRandom.addEventListener('mouseleave' , function() {
+            clearInterval(intervalId);
+         });
+   
+         if (size >= 1745) {
+            clearInterval(intervalId);
+         }
+      }, 10);
       }
-      return color;
+   );
+
+
+   function randomSize () {
+      let sizeScale = "1234567890000000";
+      let number = '';
+      let overValue = 700;
+      for (let i=0 ; i <=2 ; i++) {
+         let randomIndex = Math.floor(Math.random() * sizeScale.length);
+         number += sizeScale[randomIndex];
+         if ( number > overValue) {
+            number -= 300;
+         }
+      }
+      return number + 'px';
+   }
+
+   function randomHeight () {
+      let sizeScale = "1234567890000";
+      let number = '';
+      let overValue = 866;
+      for (let i=0 ; i <=2 ; i++) {
+         let randomIndex = Math.floor(Math.random() * sizeScale.length);
+         number += sizeScale[randomIndex];
+         if ( number > overValue) {
+            number -= 300;
+         }
+      }
+      return number + 'px';
    }
    
-   let getColor3 = getRandomColor3();
-   ball3.style.backgroundColor = getColor3;
-});
+   function randomForRandom() {
+      let sizeScale = "23"
+      let number = '';
+      for (let i=0 ; i <1 ; i++) {
+         let randomIndex = Math.floor(Math.random() * sizeScale.length);
+         number += sizeScale[randomIndex];
+      }
+      return parseInt(number);
+   }
+   
+   function randomSideWidth () {
+      let sizeScale = "1234567890000";
+      let number = '';
+      let overValue = 1745;
+      for (let i=0 ; i <= randomForRandom() ; i++) {
+         let randomIndex = Math.floor(Math.random() * sizeScale.length);
+         number += sizeScale[randomIndex];
+         if ( number > overValue) {
+            number = 1745 - randomHeight();
+         }
+      }
+      return number + 'px';
+   }
+
+   let z = randomSize();
+   
+   let y = randomHeight();
+   
+   let j = randomSideWidth();
+   
+   
+   ballRandom.style.left = j;
+   ballRandom.style.top = y;
+   ballRandom.style.width = z;
+   ballRandom.style.height = z;
+
+
+
+   ballRandom.addEventListener('click' , function() {
+      function getRandomColor() {
+         let letters = '0123456789ABCDEF';
+         let color = '#';
+         for (let i = 0; i < 6; i++) {
+             color += letters[Math.floor(Math.random() * 16)];
+         }
+         return color;
+      }
+      
+      let getColor = getRandomColor();
+      ballRandom.style.backgroundColor = getColor;
+   });
+
+   
+
+
+  }
+
+  
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
