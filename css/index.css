@@ -1,0 +1,55 @@
+html {
+   height: 100%;
+}
+
+body {
+   height: 100%;
+   margin: 0;
+}
+
+.root {
+   width: 1745px;
+   height: 866px;
+   margin: 0;
+   display: flex;
+   background-color: #00ccff;
+   position: relative;
+   overflow: hidden;
+}
+
+.ball1 {
+   height: 100px;
+   width: 100px;
+   border-radius: 50%;
+   background-color: orange;
+   display: flex;
+   position: absolute;
+   right: 1645px;
+   z-index: 999;
+   border: 0px;
+   
+}
+
+.ball2 {
+   height: 70px;
+   width: 70px;
+   border-radius: 50%;
+   background-color: violet;
+   position: absolute;
+   top: 387.5px;
+   right: 821.5px;
+   border: 0px;
+}
+
+.ball3 {
+   height: 100px;
+   width: 100px;
+   border-radius: 50%;
+   background-color: greenyellow;
+   display: flex;
+   position: absolute;
+   top: 200px;
+   left: 1500px;
+   z-index: 500;
+   border: 0px;
+}
