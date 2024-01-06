@@ -2,7 +2,7 @@
 let root = document.getElementById("root");
 let body = document.getElementById("body");
 
-let size;
+
 root.addEventListener('click' , function() {
    
 
@@ -61,6 +61,21 @@ root.addEventListener('click' , function() {
       }
       return number + 'px';
    }
+
+   function randomSize2 () {
+      let sizeScale = "1234567890000000";
+      let number = '';
+      let overValue = 500;
+      for (let i=0 ; i <=2 ; i++) {
+         let randomIndex = Math.floor(Math.random() * sizeScale.length);
+         number += sizeScale[randomIndex];
+         if ( number > overValue) {
+            number -= 300;
+         }
+      }
+      return number + 'px';
+   }
+
 
    
    function removeZero(v) {
@@ -171,43 +186,60 @@ root.addEventListener('click' , function() {
       let getColor = getRandomColor();
       ballRandom.style.backgroundColor = getColor;
    });
-
    
-   ballRandom.addEventListener('mouseover', function() {
-      const intervalId = setInterval(function() {
-        size += 1;
-        ballRandom.style.width = size ;
-        ballRandom.style.height = size ;
-        
-        if (size >= 1745) {
-          clearInterval(intervalId);
-        }
-      }, 10);
-      
-      ballRandom.addEventListener('mouseleave', function() {
-         clearInterval(intervalId);
-       });
-     });
+   let size = z;
+   let size2 = randomSize2();
 
+   ballRandom.addEventListener('mouseover' , function() {
+      let convert = parseFloat(size);
+      let convert2 = parseFloat(size2);
+      if ( convert < convert2 ) {
+         const intervalId = setInterval(function() {
+
+            let increase = convert += 2;
+            ballRandom.style.width = increase + 'px';
+            ballRandom.style.height = increase  + 'px';
+    
+            size = increase + 'px';
+            
+            if (convert >= convert2) {
+             clearInterval(intervalId);
+           }
+          }, 10);
+          
+          ballRandom.addEventListener('mouseleave', function() {
+             clearInterval(intervalId);
+           });
+      } else if ( convert > convert2 ) {
+         const intervalId = setInterval(function() {
+
+            let decrease = convert -= 2;
+            ballRandom.style.width = decrease + 'px';
+            ballRandom.style.height = decrease  + 'px';
+    
+            size = decrease + 'px';
+            
+            if (convert <= convert2) {
+             clearInterval(intervalId);
+           }
+          }, 10);
+
+          
+          ballRandom.addEventListener('mouseleave', function() {
+             clearInterval(intervalId);
+           });
+      }
+   let widthRemove = ballRandom.style.width;
+   let widthRemove2 = parseFloat(widthRemove);
+   
+   if ( widthRemove2 < 10 ) {
+      ballRandom.remove();
+   }
+   }
+   );
+     
+     
   }
 
   
 );
-
-/*
-ballRandom.addEventListener('mouseover', function() {
-      const intervalId = setInterval(function() {
-        size += 1;
-        ballRandom.style.width = size + "px";
-        ballRandom.style.height = size + "px";
-        
-        if (size >= 1745) {
-          clearInterval(intervalId);
-        }
-      }, 10);
-      
-      ballRandom.addEventListener('mouseleave', function() {
-         clearInterval(intervalId);
-       });
-     });
-*/
